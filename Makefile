@@ -4,8 +4,8 @@
 PREFIX ?= $(if $(VIRTUAL_ENV),$(VIRTUAL_ENV),$(CURDIR)/.local)
 
 SHELL = /bin/bash
-PYTHON = python
-PIP = pip
+PYTHON ?= python
+PIP ?= pip
 
 help:
 	@echo ""
@@ -33,6 +33,7 @@ deps: $(PREFIX)/lib/libfst.so.17
 # since pynini 2.0.9, we need libfst-dev > 1.7
 deps-ubuntu:
 	apt-get install -y \
+		python3 python3-pip python3-venv \
 		g++ libfst-dev \
 		wget tar gzip
 

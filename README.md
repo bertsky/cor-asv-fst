@@ -1,6 +1,7 @@
 # cor-asv-fst
-    OCR post-correction with error/lexicon Finite State Transducers and
-    chararacter-level LSTM language models
+    OCR post-correction with error/lexicon Finite State Transducers and chararacter-level LSTM language models
+
+[![CircleCI](https://circleci.com/gh/ASVLeipzig/cor-asv-fst.svg?style=svg)](https://circleci.com/gh/ASVLeipzig/cor-asv-fst)
 
 ## Introduction
 
@@ -11,24 +12,37 @@ Required Ubuntu packages:
 
 * Python (``python`` or ``python3``)
 * pip (``python-pip`` or ``python3-pip``)
-* virtualenv (``python-virtualenv`` or ``python3-virtualenv``)
+* virtualenv (``python-venv`` or ``python3-venv``)
+* a _recent_ OpenFST (``libfst-dev`` >= 1.7)
+* for building: ``g++`` (>= 5.0)
+* for testing: ``wget tar gzip``
+
+All of these can be installed via:
+```shell
+sudo make deps-ubuntu
+```
 
 Create and activate a virtualenv as usual.
 
-To install Python dependencies and this module, then do:
+To install Python dependencies:
 ```shell
-make deps install
+make deps
 ```
 Which is the equivalent of:
 ```shell
 pip install -r requirements.txt
-pip install -e .
 ```
 
-In addition to the requirements listed in `requirements.txt`, the tool
-requires the
-[pynini](http://www.opengrm.org/twiki/bin/view/GRM/Pynini)
-library, which has to be installed from source.
+(This will also compile and install the C++ libraries OpenFST/libfst and [pynini](http://www.opengrm.org/twiki/bin/view/GRM/Pynini) along with their Python bindings.)
+
+To install this module, then do:
+```shell
+make install
+```
+Which is the equivalent of:
+```shell
+pip install .
+```
 
 ## Usage
 
