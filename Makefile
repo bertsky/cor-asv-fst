@@ -23,7 +23,7 @@ help:
 PKG_CONFIG_PATH := $(PREFIX)/lib/pkgconfig
 export PKG_CONFIG_PATH
 deps: $(PREFIX)/lib/libfst.so.17
-	$(PIP) install -r requirements.txt
+	CFLAGS="-I$(PREFIX)/include" LDFLAGS="-L$(PREFIX)/lib" $(PIP) install -r requirements.txt
 
 #deps-test:
 #	$(PIP) install -r requirements_test.txt
