@@ -38,7 +38,7 @@ deps-ubuntu:
 		wget tar gzip
 
 $(PREFIX)/lib/libfst.so.17: openfst-1.7.5.tar.gz
-	tar zxvf $<
+	tar --no-same-permissions --no-same-owner -zxvf $<
 	cd openfst-1.7.5 && ./configure --enable-grm --enable-python --prefix=$(PREFIX) && $(MAKE) install
 
 openfst-1.7.5.tar.gz:
