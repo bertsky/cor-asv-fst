@@ -22,9 +22,10 @@ help:
 
 PKG_CONFIG_PATH := $(PREFIX)/lib/pkgconfig
 export PKG_CONFIG_PATH
-deps: $(PREFIX)/lib/libfst.so.17
+deps: $(PREFIX)/lib/libfst.so.17 pynini-2.1.2/setup.py
 	$(PIP) install -U pip
 	$(PIP) install Cython
+	CFLAGS="-I$(PREFIX)/include" LDFLAGS="-L$(PREFIX)/lib" $(PIP) install ./pynini-2.1.2
 	CFLAGS="-I$(PREFIX)/include" LDFLAGS="-L$(PREFIX)/lib" $(PIP) install -r requirements.txt
 
 #deps-test:
@@ -45,6 +46,12 @@ $(PREFIX)/lib/libfst.so.17: openfst-1.7.9.tar.gz
 
 openfst-1.7.9.tar.gz:
 	wget -nv http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.7.9.tar.gz
+
+pynini-2.1.2/setup.py: pynini-2.1.2.tar.gz
+	tar --no-same-permissions --no-same-owner -zxvf $<
+
+pynini-2.1.2.tar.gz:
+	wget -nv http://www.opengrm.org/twiki/pub/GRM/PyniniDownload/pynini-2.1.2.tar.gz
 
 install: deps
 	$(PIP) install .

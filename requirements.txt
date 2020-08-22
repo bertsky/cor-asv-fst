@@ -3,7 +3,6 @@ six
 numpy
 editdistance
 spacy
-pynini @ git+https://github.com/kylebgorman/pynini.git#egg=pynini
 networkx >= 2.0
 ocrd >= 2.13.2
 ocrd_keraslm >= 0.4.0
