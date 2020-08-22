@@ -34,11 +34,15 @@ deps: $(PREFIX)/lib/libfst.so.17 pynini-2.1.2/setup.py
 # Dependencies for deployment in an ubuntu/debian linux
 # we need libstdc++ > 5.0 (for codecvt, std::make_unique etc)
 # since pynini 2.0.9, we need libfst-dev > 1.7
+# g++ (7.4.0) crashes with `internal compiler error` on pynini
+# g++-7 (7.5.0) works
 deps-ubuntu:
 	apt-get install -y \
 		python3 python3-dev python3-pip python3-venv \
-		g++ libfst-dev \
+		g++-7 gcc-7 build-essential autoconf libtool libfst-dev \
 		wget tar gzip
+	update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 7
+	update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 7
 
 $(PREFIX)/lib/libfst.so.17: openfst-1.7.9.tar.gz
 	tar --no-same-permissions --no-same-owner -zxvf $<
