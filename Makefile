@@ -33,16 +33,16 @@ deps: $(PREFIX)/lib/libfst.so.17
 # since pynini 2.0.9, we need libfst-dev > 1.7
 deps-ubuntu:
 	apt-get install -y \
-		python3 python3-pip python3-venv \
+		python3 python3-dev python3-pip python3-venv \
 		g++ libfst-dev \
 		wget tar gzip
 
-$(PREFIX)/lib/libfst.so.17: openfst-1.7.5.tar.gz
+$(PREFIX)/lib/libfst.so.17: openfst-1.7.9.tar.gz
 	tar --no-same-permissions --no-same-owner -zxvf $<
-	cd openfst-1.7.5 && ./configure --enable-grm --enable-python --prefix=$(PREFIX) && $(MAKE) install
+	cd openfst-1.7.9 && ./configure --enable-grm --enable-python --prefix=$(PREFIX) && $(MAKE) install
 
-openfst-1.7.5.tar.gz:
-	wget -nv http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.7.5.tar.gz
+openfst-1.7.9.tar.gz:
+	wget -nv http://www.openfst.org/twiki/pub/FST/FstDownload/openfst-1.7.9.tar.gz
 
 install: deps
 	$(PIP) install .
